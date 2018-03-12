@@ -11,10 +11,16 @@ class CreateCouleursTable extends Migration
      *
      * @return void
      */
+    /*
+    string lib_couleur
+    string code_couleur
+    */
     public function up()
     {
         Schema::create('couleurs', function (Blueprint $table) {
             $table->increments('id');
+            $table->sting('lib_couleur');
+            $table->sting('code_couleur');
             $table->timestamps();
         });
     }

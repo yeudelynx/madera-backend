@@ -11,10 +11,17 @@ class CreateMagasinsTable extends Migration
      *
      * @return void
      */
+
+    /*
+    string adresse
+    string lib_magasin
+    */
     public function up()
     {
         Schema::create('magasins', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('adresse');
+            $table->string('lib_magasin');
             $table->timestamps();
         });
         Schema::create('magasins', function (Blueprint $table) {
