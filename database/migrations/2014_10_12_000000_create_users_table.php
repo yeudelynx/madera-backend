@@ -11,15 +11,25 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->timestamps();
+        });
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('login')->unique();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('ville');
             $table->string('password');
+            $table->integer('magasin_id')->unsigned()->nullable();
+            $table->foreign('magasin_id')->references('id')->on('magasins');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

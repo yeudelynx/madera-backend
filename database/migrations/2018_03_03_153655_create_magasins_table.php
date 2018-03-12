@@ -17,6 +17,20 @@ class CreateMagasinsTable extends Migration
             $table->increments('id');
             $table->timestamps();
         });
+        Schema::create('magasins', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('login')->unique();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('ville');
+            $table->string('password');
+            $table->integer('magasin_id')->unsigned()->nullable();
+            $table->foreign('magasin_id')->references('id')->on('magasins');
+            $table->rememberToken();
+            $table->timestamps();
+            $table->softDeletes();
+        });
+
     }
 
     /**
