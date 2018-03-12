@@ -11,10 +11,15 @@ class CreateGammesTable extends Migration
      *
      * @return void
      */
+
+    /*
+    string lib_gamme
+    */
     public function up()
     {
         Schema::create('gammes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('lib_gamme');
             $table->timestamps();
         });
     }

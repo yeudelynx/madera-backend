@@ -11,10 +11,18 @@ class CreateDevisTable extends Migration
      *
      * @return void
      */
+
+    /*
+    bool is_sync
+    int orinetation 
+    */
+
     public function up()
     {
         Schema::create('devis', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('is_sync');
+            $table->integer('orientation');
             $table->timestamps();
         });
     }

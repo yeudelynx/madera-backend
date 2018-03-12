@@ -11,10 +11,22 @@ class CreateModulesTable extends Migration
      *
      * @return void
      */
+     /*
+    float prix
+    float longueur
+    float hauteur
+    float largeur
+    float distance_sol
+    */
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('prix', 10, 2);
+            $table->double('longueur', 10, 3);
+            $table->double('hauteur', 10, 3);
+            $table->double('largeur', 10, 3);
+            $table->double('distance_sol', 6, 3);
             $table->timestamps();
         });
     }

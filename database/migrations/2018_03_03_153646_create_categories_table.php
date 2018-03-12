@@ -11,10 +11,14 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
+    /*
+    string lib_categorie
+    */
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->('lib_categorie');
             $table->timestamps();
         });
     }
