@@ -11,13 +11,6 @@ class CreateSolsTable extends Migration
      *
      * @return void
      */
-
-    /*
-    string image_sol
-    int longueur
-    int largeur
-    $table->multiPoint('list_points_sol');
-    */
     public function up()
     {
         Schema::create('sols', function (Blueprint $table) {
