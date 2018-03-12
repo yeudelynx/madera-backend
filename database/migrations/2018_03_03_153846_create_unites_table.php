@@ -11,11 +11,6 @@ class CreateUnitesTable extends Migration
      *
      * @return void
      */
-
-    /*
-    string lib_unite
-    string symbole
-    */
     public function up()
     {
         Schema::create('unites', function (Blueprint $table) {

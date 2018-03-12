@@ -24,7 +24,7 @@ class AddRelation extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('sol_id')->unsigned()->nullable();
-            $table->foreign('sol_id')->references('id')->on('sols');         
+            $table->foreign('sol_id')->references('id')->on('sols');
 		});
 
 		Schema::table('modules', function (Blueprint $table) {

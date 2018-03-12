@@ -11,12 +11,6 @@ class CreateDevisTable extends Migration
      *
      * @return void
      */
-
-    /*
-    bool is_sync
-    int orinetation 
-    */
-
     public function up()
     {
         Schema::create('devis', function (Blueprint $table) {

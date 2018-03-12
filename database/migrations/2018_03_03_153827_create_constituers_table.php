@@ -11,13 +11,6 @@ class CreateConstituersTable extends Migration
      *
      * @return void
      */
-    /*
-    float x_pos
-    float y_pos
-    float z_pos
-    int etage_plan
-    float prix_module
-    */
     public function up()
     {
         Schema::create('constituers', function (Blueprint $table) {

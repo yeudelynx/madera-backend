@@ -11,10 +11,6 @@ class CreateMatieresTable extends Migration
      *
      * @return void
      */
-    /*
-    string lib_matiere
-    */
-
     public function up()
     {
         Schema::create('matieres', function (Blueprint $table) {

@@ -22,7 +22,6 @@ class CreateRemisesTable extends Migration
         Schema::create('remises', function (Blueprint $table) {
             $table->increments('id');
             $table->double('valeur_remise', 9, 2);
-            $table->integer('nombre_modules_gamme');
             $table->string('lib_remise');
             $table->timestamps();
         });
