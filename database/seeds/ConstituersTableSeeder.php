@@ -1,6 +1,7 @@
 <?php
 
 use App\Constituer;
+use App\Module;
 use Illuminate\Database\Seeder;
 
 class ConstituersTableSeeder extends Seeder
@@ -17,13 +18,13 @@ class ConstituersTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $faker = \Faker\Factory::create();
 		for ($i=0; $i < 100; $i++) {
-            $module = Module::where('id', $place->user_id)->first();
+            $module = Module::where('id', $faker->numberBetween($min = 1, $max = 10))->first();
 		    DB::table('constituers')->insert([
                 'x_pos' => $faker->numberBetween($min = 0, $max = 100),
                 'y_pos' => $faker->numberBetween($min = 0, $max = 100),
                 'z_pos' => $faker->numberBetween($min = 0, $max = 1),
                 'etage_plan' => 0,
-                'prix_module' => $module->prix_module,
+                'prix_module' => $module->prix,
                 'module_id' => $module->id,
                 'devis_id' => $faker->numberBetween($min = 1, $max = 10),
                 'couleur_id' => $faker->numberBetween($min = 1, $max = 10),

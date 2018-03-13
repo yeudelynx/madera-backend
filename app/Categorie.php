@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
 
-    use SoftDeletes;
     protected $fillable = ['lib_categorie', ];
 	protected $hidden = [];
 

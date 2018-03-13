@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Matiere extends Model
 {
     
-    use SoftDeletes;
     protected $fillable = ['lib_matiere', ];
 	protected $hidden = [];
 	

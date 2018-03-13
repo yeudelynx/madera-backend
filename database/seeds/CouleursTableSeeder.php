@@ -18,7 +18,7 @@ class CouleursTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 		for ($i=0; $i < 10; $i++) {
 		    DB::table('couleurs')->insert([
-                'code_couleur' $faker->numberBetween($min = 0, $max = 100),
+                'code_couleur' => $faker->numberBetween($min = 0, $max = 100),
                 'lib_couleur' => 'lib couleur '.$i,
 		    ]);
 		}

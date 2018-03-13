@@ -4,25 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateGammesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('gammes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('login')->unique();
-            $table->string('nom');
-            $table->string('prenom');
-            $table->string('ville');
-            $table->string('password');
-            $table->string('mail');
-            $table->rememberToken();
+            $table->string('lib_gamme');
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('gammes');
     }
 }

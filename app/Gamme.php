@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gamme extends Model
 {
-    
-    use SoftDeletes;
     protected $fillable = ['lib_gamme', 'remise_id', ];
 	protected $hidden = [];
 	

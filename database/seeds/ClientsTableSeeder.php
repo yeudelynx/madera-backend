@@ -24,7 +24,7 @@ class ClientsTableSeeder extends Seeder
                 'prenom' => $firstname,
                 'adresse' => $faker->address, 
                 'tel' => '0606060606',
-                'mail' => $name.'.'.$lastName.'@gmail.com',
+                'mail' => $name.'.'.$firstname.'@gmail.com',
 		    ]);
 		}
     }

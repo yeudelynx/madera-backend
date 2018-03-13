@@ -11,13 +11,6 @@ class CreateModulesTable extends Migration
      *
      * @return void
      */
-     /*
-    float prix
-    float longueur
-    float hauteur
-    float largeur
-    float distance_sol
-    */
     public function up()
     {
         Schema::create('modules', function (Blueprint $table) {

@@ -21,14 +21,13 @@ class UsersTableSeeder extends Seeder
             $name = $faker->lastName();
             $firstname = $faker->firstName();
             DB::table('users')->insert([
-                'name' => $name,
-                'email' => $name.'.'.$lastName.'@gmail.com', 
+                'mail' => $name.'.'.$firstname.'@gmail.com', 
                 'password' => bcrypt($name),
                 'nom' => $name,
-                'prenom' => $mastName,
+                'prenom' => $firstname,
                 'ville' => $faker->address,
-                'login' => $name.'.'.$lastName,
-                'magasin_id' => $faker->numberBetween($min = 0, $max = 10),
+                'login' => $name.'.'.$firstname,
+                'magasin_id' => $faker->numberBetween($min = 1, $max = 10),
 		    ]);
 		}
     }

@@ -4,24 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCouleursTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    /*
-    string lib_couleur
-    string code_couleur
-    */
     public function up()
     {
-        Schema::create('couleurs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->sting('lib_couleur');
-            $table->sting('code_couleur');
-            $table->timestamps();
+            $table->string('lib_categorie');
+           $table->timestamps();
         });
     }
 
@@ -32,6 +27,6 @@ class CreateCouleursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('couleurs');
+        Schema::dropIfExists('categories');
     }
 }

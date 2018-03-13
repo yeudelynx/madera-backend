@@ -4,22 +4,19 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGammesTable extends Migration
+class CreateCouleursTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-    /*
-    string lib_gamme
-    */
     public function up()
     {
-        Schema::create('gammes', function (Blueprint $table) {
+        Schema::create('couleurs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lib_gamme');
+            $table->string('lib_couleur');
+            $table->string('code_couleur');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateGammesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gammes');
+        Schema::dropIfExists('couleurs');
     }
 }

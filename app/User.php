@@ -8,15 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-    use SoftDeletes;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nom', 'prenom', 'ville', 'login',
+        'mail', 'password', 'nom', 'prenom', 'ville', 'login',
     ];
 
     /**
@@ -27,6 +25,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
 
     /**
      * The attributes that should be mutated to dates.

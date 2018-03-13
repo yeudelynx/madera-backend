@@ -3,7 +3,7 @@
 use App\Devis;
 use Illuminate\Database\Seeder;
 
-class DevissTableSeeder extends Seeder
+class DevisTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

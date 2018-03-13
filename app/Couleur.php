@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Couleur extends Model
 {
     
-    use SoftDeletes;
     protected $fillable = ['lib_couleur', 'code_couleur', ];
 	protected $hidden = [];
 	

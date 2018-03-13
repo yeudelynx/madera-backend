@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Devis extends Model
 {
     
-    use SoftDeletes;
     protected $fillable = [ 'is_sync', 'orientation', 'client_id', 'user_id', 'sol_id', ];
 	protected $hidden = [];
 

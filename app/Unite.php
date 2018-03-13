@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unite extends Model
 {
-    
-    use SoftDeletes;
     protected $fillable = ['symbole', 'lib_unite'];
 	protected $hidden = [];
 	

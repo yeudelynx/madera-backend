@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Magasin extends Model
 {
-    
-    use SoftDeletes;
     protected $fillable = ['adresse', 'lib_magasin', ];
 	protected $hidden = [];
 	

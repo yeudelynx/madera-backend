@@ -4,25 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRemisesTable extends Migration
+class CreateConstituersTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-    /*
-    float valeur_remise
-    int nombre_modules_gamme
-    string lib_remise
-    */
     public function up()
     {
-        Schema::create('remises', function (Blueprint $table) {
+        Schema::create('constituers', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('valeur_remise', 9, 2);
-            $table->string('lib_remise');
+            $table->double('x_pos', 10, 3);
+            $table->double('y_pos', 10, 3);
+            $table->double('z_pos', 10, 3);
+            $table->integer('etage_plan');
+            $table->double('prix_module', 9, 2);
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreateRemisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('remises');
+        Schema::dropIfExists('constituers');
     }
 }
