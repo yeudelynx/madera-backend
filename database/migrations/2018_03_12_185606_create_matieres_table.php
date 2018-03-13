@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitesTable extends Migration
+class CreateMatieresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateUnitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('unites', function (Blueprint $table) {
+        Schema::create('matieres', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('lib_matiere');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateUnitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unites');
+        Schema::dropIfExists('matieres');
     }
 }

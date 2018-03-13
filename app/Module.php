@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    //
+    protected $fillable = ['prix', 'longueur', 'hauteur', 'largeur', 'distance_sol', 'gamme_id', 'categorie_id' ];
+	protected $hidden = [];
+	
+	/**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCouleursTable extends Migration
+class CreateUnitesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateCouleursTable extends Migration
      */
     public function up()
     {
-        Schema::create('couleurs', function (Blueprint $table) {
+        Schema::create('unites', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('symbole');
+            $table->string('lib_unite');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateCouleursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('couleurs');
+        Schema::dropIfExists('unites');
     }
 }

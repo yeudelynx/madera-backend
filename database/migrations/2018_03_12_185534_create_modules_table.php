@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommercialsTable extends Migration
+class CreateModulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateCommercialsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commercials', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
+            $table->double('prix', 10, 2);
+            $table->double('longueur', 10, 3);
+            $table->double('hauteur', 10, 3);
+            $table->double('largeur', 10, 3);
+            $table->double('distance_sol', 6, 3);
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateCommercialsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commercials');
+        Schema::dropIfExists('modules');
     }
 }

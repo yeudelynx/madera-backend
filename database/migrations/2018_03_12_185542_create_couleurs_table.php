@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDevisTable extends Migration
+class CreateCouleursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateDevisTable extends Migration
      */
     public function up()
     {
-        Schema::create('devis', function (Blueprint $table) {
+        Schema::create('couleurs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('lib_couleur');
+            $table->string('code_couleur');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateDevisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devis');
+        Schema::dropIfExists('couleurs');
     }
 }

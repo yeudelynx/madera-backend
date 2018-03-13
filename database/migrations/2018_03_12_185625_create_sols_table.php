@@ -15,6 +15,10 @@ class CreateSolsTable extends Migration
     {
         Schema::create('sols', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('image_sol');
+            $table->double('longueur', 10, 3);
+            $table->double('largeur', 10, 3);
+            $table->multiPoint('list_points_sol');
             $table->timestamps();
         });
     }

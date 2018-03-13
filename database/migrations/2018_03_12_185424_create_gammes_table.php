@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMagasinsTable extends Migration
+class CreateGammesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateMagasinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('magasins', function (Blueprint $table) {
+        Schema::create('gammes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('lib_gamme');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateMagasinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('magasins');
+        Schema::dropIfExists('gammes');
     }
 }
