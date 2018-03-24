@@ -9,7 +9,10 @@ use App\Constituer;
 use App\User;
 use App\Client;
 
+use \FPDF;
+
 use Illuminate\Http\Request;
+
     	//'module_id', 'devis_id', 'couleur_id', 'matiere_id', 'unite_id'
 
 class PdfController extends Controller
@@ -42,11 +45,13 @@ class PdfController extends Controller
             ->get();
 
         foreach ($array_modules_devis as $key => $module) {
+            \Log::info($key);
             \Log::info($module);
         }
 
-            \Log::info($commercial);
+        \Log::info($commercial);
 
+        $pdf = new FPDF();
 
         // Pour chaque module, remonter le nom et toutes autres infos utile qui compose le module
         // Voir pour faire une jointure
@@ -67,15 +72,7 @@ class PdfController extends Controller
         // creer le pied de page (ajouter prix HT, Prix TTC, Reduction et Prix + reduction.)
         
         // Signature des différentes parties.
-         
-
-
-
-
-
-
-
-
+    
 
         foreach ($array_modules_devis as $key => $module) {
         }
