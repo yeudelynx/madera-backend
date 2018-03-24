@@ -28,10 +28,10 @@ Route::get('pdf/{id_devis}', 'PdfController@generate');
 
 
 //retrive data from RealmDB to local DB
-//Route::get('/retrive', 'RealmController@generate');
+//Route::get('/retrive', 'RealmController@retrive');
 
 //propagate data from local DB to RealmDB
-//Route::get('/propagate', 'RealmController@generate');
+//Route::get('/propagate', 'RealmController@propagate');
 
 
 Route::get('routes', function(){
