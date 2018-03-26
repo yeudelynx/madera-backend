@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Module extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['prix', 'longueur', 'hauteur', 'largeur', 'distance_sol', 'gamme_id', 'categorie_id' ];
 	protected $hidden = [];
 	

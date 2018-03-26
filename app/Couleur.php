@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Couleur extends Model
 {
-    
+    use SoftDeletes;    
     protected $fillable = ['lib_couleur', 'code_couleur', ];
 	protected $hidden = [];
 	

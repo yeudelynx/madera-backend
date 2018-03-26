@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sol extends Model
 {
-    
+    use SoftDeletes;    
     protected $fillable = ['image_sol', 'longueur', 'largeur', 'list_points_sol', ];
 	protected $hidden = [];
 	
