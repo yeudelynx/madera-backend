@@ -13,6 +13,7 @@ use \FPDF;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
 
 
 class PdfController extends Controller
@@ -58,6 +59,8 @@ class PdfController extends Controller
      */
     public function generate($id_devis)
     {
+        $image = Storage::disk('public')->url('madera.jpg');
+
         $devis = Devis::where('id', $id_devis)->first();
         //'client_id', 'user_id'
 
@@ -80,15 +83,26 @@ class PdfController extends Controller
 
         \Log::info($commercial);
 
-          
+        $this->pdfDocument->Image($image);
         // Infos du client
         $this->pdfDocument->Cell(0, 10, $client->nom.' '.$client->prenom, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->adresse, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->tel, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->mail, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
 
-    
 
+        $this->pdfDocument->Cell(0, 10, $client->client_id, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+        $this->pdfDocument->Cell(0, 10, 'Madera Construction', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+        $this->pdfDocument->Cell(0, 10, 'Rue Enzo Ferrari', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+        $this->pdfDocument->Cell(0, 10, '85000 La Roche-sur-Yon', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+
+
+        //adresse de l'entreprise;
+        /*$this->pdfDocument->Cell(0, 7, 'Madera Construction', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 7, ' Rue Enzo Ferrari', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 7, '85000 La Roche-sur-Yon', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);*/
+
+        
         foreach ($array_modules_devis as $key => $module) {
             //\Log::info($module);
             
@@ -105,7 +119,9 @@ class PdfController extends Controller
             $this->pdfDocument->Cell(40, 7, $module->lib_gamme, self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
 
             //prix
-            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_LEFT);
+            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_UNDER, self::$ALIGN_LEFT);
+            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_UNDER, self::$ALIGN_LEFT);
+
         }
 
 
