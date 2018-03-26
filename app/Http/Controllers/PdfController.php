@@ -13,10 +13,44 @@ use \FPDF;
 
 use Illuminate\Http\Request;
 
-    	//'module_id', 'devis_id', 'couleur_id', 'matiere_id', 'unite_id'
+
 
 class PdfController extends Controller
 {
+
+    	//'module_id', 'devis_id', 'couleur_id', 'matiere_id', 'unite_id'
+        //La façon d'afficher le devis
+        private static $DEST_INLINE = 'I'; //le navigateur l'affichera
+        private static $DEST_DOWNLOAD = 'D'; //un téléchargement débutera.
+        private static $DEST_LOCAL = 'F'; //enregistrer un fichier localement
+        private static $DEST_STRING = 'S'; //une chaine de caractère
+        private static $DEFAULT_PATH_FOR_IMAGES = 'assets/images/';
+
+        //Bordures pour les cellules
+        private static $NO_BORDER = 0; 
+        private static $BORDER    = 1;
+
+        //Gestions des borudres
+        private static $BORDER_LEFT = 'L';
+        private static $BORDER_RIGHT = 'R';
+        private static $BORDER_TOP = 'T';
+        private static $BORDER_BOTTOM = 'B';
+        //L'alignement des cellules
+        private static $ALIGN_RIGHT = 'R';
+        private static $ALIGN_LEFT = 'L';
+        private static $ALIGN_CENTER = 'C';
+
+        //Positionnement du curseur.
+        private static $CURRENT_POS_RIGHT = 0;
+        private static $CURRENT_POS_NEXTLINE = 1; //placement au DEBUT de la ligne suivante
+        private static $CURRENT_POS_UNDER = 2;  //se positionne à la ligne suivante juste en dessous.
+        private $pdfDocument;
+
+     public function __construct() {
+         $this->pdfDocument = new FPDF('P', 'mm', 'A4');
+         $this->pdfDocument->AddPage();
+         $this->pdfDocument->SetFont('Arial');
+     }
     /**
      * Display a listing of the resource.
      *
@@ -44,14 +78,37 @@ class PdfController extends Controller
             ->where('constituers.devis_id', $id_devis)
             ->get();
 
-        foreach ($array_modules_devis as $key => $module) {
-            \Log::info($key);
-            \Log::info($module);
-        }
-
         \Log::info($commercial);
 
-        $pdf = new FPDF();
+          
+        // Infos du client
+        $this->pdfDocument->Cell(0, 10, $client->nom.' '.$client->prenom, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 10, $client->adresse, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 10, $client->tel, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 10, $client->mail, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+
+    
+
+        foreach ($array_modules_devis as $key => $module) {
+            //\Log::info($module);
+            
+            // nom
+            $this->pdfDocument->Cell(40, 7, 'le nom du module', self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
+
+            //couleur
+            $this->pdfDocument->Cell(40, 7, $module->lib_couleur, self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
+
+            //matiere
+            $this->pdfDocument->Cell(40, 7, $module->lib_matiere, self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
+
+            // gamme
+            $this->pdfDocument->Cell(40, 7, $module->lib_gamme, self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
+
+            //prix
+            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_LEFT);
+        }
+
+
 
         // Pour chaque module, remonter le nom et toutes autres infos utile qui compose le module
         // Voir pour faire une jointure
@@ -59,7 +116,7 @@ class PdfController extends Controller
         // Boucler sur chaque module afin de remplir le tableau de modules qui compose le devis.
 
 
-        // Infos du client
+     
         // Infos du commercial
 
         
@@ -74,13 +131,14 @@ class PdfController extends Controller
         // Signature des différentes parties.
     
 
-        foreach ($array_modules_devis as $key => $module) {
+        /*foreach ($array_modules_devis as $key => $module) {
         }
 
 
-    	foreach ($array_modules_devis as $key => $module) {
-    		//$
-    	}
-        return 'pdf generated with id_devis : ' . $id_devis . ' ;)' ;
+        foreach ($array_modules_devis as $key => $module) {
+            //$
+        }*/
+        //return 'pdf generated with id_devis : ' . $id_devis . ' ;)' ;
+        $this->pdfDocument->Output(self::$DEST_DOWNLOAD, 'result.pdf', False);
     }
 }
