@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             $firstname = $faker->firstName();
             DB::table('users')->insert([
                 'mail' => $name.'.'.$firstname.'@gmail.com', 
-                'password' => bcrypt($name),
+                'password' => md5($name.'.'.$firstname),
                 'nom' => $name,
                 'prenom' => $firstname,
                 'ville' => $faker->address,

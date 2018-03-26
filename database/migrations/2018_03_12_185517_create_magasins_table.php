@@ -29,6 +29,8 @@ class CreateMagasinsTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('magasins');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

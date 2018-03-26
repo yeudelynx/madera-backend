@@ -27,6 +27,8 @@ class CreateMatieresTable extends Migration
      */
     public function down()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('matieres');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
