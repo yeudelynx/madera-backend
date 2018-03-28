@@ -83,15 +83,20 @@ class PdfController extends Controller
 
         \Log::info($commercial);
 
-        $this->pdfDocument->Image($image);
+        $this->pdfDocument->Image($image, 10,6,30);
+        $this->pdfDocument->Ln(25);
         // Infos du client
         $this->pdfDocument->Cell(0, 10, $client->nom.' '.$client->prenom, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->adresse, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->tel, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
         $this->pdfDocument->Cell(0, 10, $client->mail, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE);
+        $this->pdfDocument->Cell(0, 10, "date d'edition : ".date('d/m/Y'), self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+
+        $this->pdfDocument->Cell(0, 10, 'Id client : '.$devis->client_id, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+         $this->pdfDocument->Cell(0, 10, 'Id commercial : '.$devis->user_id, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
 
 
-        $this->pdfDocument->Cell(0, 10, $client->client_id, self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
+        //infos entreprise
         $this->pdfDocument->Cell(0, 10, 'Madera Construction', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
         $this->pdfDocument->Cell(0, 10, 'Rue Enzo Ferrari', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
         $this->pdfDocument->Cell(0, 10, '85000 La Roche-sur-Yon', self::$NO_BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_RIGHT);
@@ -119,10 +124,10 @@ class PdfController extends Controller
             $this->pdfDocument->Cell(40, 7, $module->lib_gamme, self::$BORDER, self::$CURRENT_POS_RIGHT, self::$ALIGN_LEFT);
 
             //prix
-            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_UNDER, self::$ALIGN_LEFT);
-            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_UNDER, self::$ALIGN_LEFT);
-
+            $this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_NEXTLINE, self::$ALIGN_LEFT);
         }
+
+        //$this->pdfDocument->Cell(25, 7, $module->prix_module, self::$BORDER, self::$CURRENT_POS_UNDER, self::$ALIGN_LEFT);
 
 
 
