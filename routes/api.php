@@ -12,15 +12,61 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 
+Route::get('hello/{number}', function($number) {
+    return "Hello world " . $number ;
+    });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
 
-Route::get('hello/{number}', function($number) {
-	return "Hello world " . $number ;
-	});
+/*
+php artisan make:controller API/CategorieController  --resource --model=Categorie --api
+php artisan make:controller API/ClientController  --resource --model=Client --api
+php artisan make:controller API/ConstituerController  --resource --model=Constituer --api
+php artisan make:controller API/CouleurController  --resource --model=Couleur --api
+php artisan make:controller API/DevisController  --resource --model=Devis --api
+php artisan make:controller API/GammeController  --resource --model=Gamme --api
+php artisan make:controller API/MagasinController  --resource --model=Magasin --api
+php artisan make:controller API/MatiereController  --resource --model=Matiere --api
+php artisan make:controller API/ModuleController  --resource --model=Module --api
+php artisan make:controller API/RemiseController  --resource --model=Remise --api
+php artisan make:controller API/SolController  --resource --model=Sol --api
+php artisan make:controller API/UniteController  --resource --model=Unite --api
+php artisan make:controller api/usercontroller  --resource --model=user --api
+
+Route::apiResource('Categorie', 'CategorieController');
+Route::apiResource('Client', 'ClientController');
+Route::apiResource('Constituer', 'ConstituerController');
+Route::apiResource('Couleur', 'CouleurController');
+Route::apiResource('Devis', 'DevisController');
+Route::apiResource('Gamme', 'GammeController');
+Route::apiResource('Magasin', 'MagasinController');
+Route::apiResource('Matiere', 'MatiereController');
+Route::apiResource('Module', 'ModuleController');
+Route::apiResource('Remise', 'RemiseController');
+Route::apiResource('Sol', 'SolController');
+Route::apiResource('Unite', 'UniteController');
+Route::apiResource('User', 'UserController');
+
+*/
+
+Route::apiResources([
+    'categorie' => 'CategorieController',
+    'client' => 'ClientController',
+    'constituer' => 'ConstituerController',
+    'couleur' => 'CouleurController',
+    'devis' => 'DevisController',
+    'gamme' => 'GammeController',
+    'magasin' => 'MagasinController',
+    'matiere' => 'MatiereController',
+    'module' => 'ModuleController',
+    'remise' => 'RemiseController',
+    'sol' => 'SolController',
+    'unite' => 'UniteController',
+    'user' => 'UserController',
+]);
 
 
 //Trigger this route for generate a pdf with specifique id_devis
@@ -33,7 +79,7 @@ Route::get('pdf/{id_devis}', 'PdfController@generate');
 //propagate data from local DB to RealmDB
 //Route::get('/propagate', 'RealmController@propagate');
 
-
+/*
 Route::get('routes', function(){
     $routeCollection = Route::getRoutes()->get();
     $str = "<table id='routes-table' class='table table-bordered table-responsive'>";
@@ -60,3 +106,5 @@ Route::get('routes', function(){
     $str .= "</table>";
     return $str;
 });
+
+*/
