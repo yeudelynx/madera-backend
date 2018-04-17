@@ -16,8 +16,7 @@ class SyncController extends Controller
 		/*
 			TODO : Replace postJson with json from request
 		*/
-
-    	$syncRequest = new SyncRequest($request);
+    	$syncRequest = new SyncRequest($request->input('date'), $request->input('clients'), $request->input('devis'), $request->input('constituers'));
     	$syncRequest->Process();
 
     	$syncResponse = new SyncResponse();

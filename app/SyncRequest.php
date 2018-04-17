@@ -6,17 +6,17 @@ use App\Devis;
 
 class SyncRequest
 {
-    private $arrayClients = array();
-    private $arrayConstituers = array();
-    private $arrayDevis = array();
+    private $arrayClients;
+    private $arrayConstituers;
+    private $arrayDevis;
     private $date;
 
-    function __construct($request)
-    {        
-        $this->arrayClients = $request->input('clients');
-        $this->arrayConstituers = $request->input('constituers');
-        $this->arrayDevis = $request->input('devis');
-        $this->date = $request->input('date');
+    function __construct($date, $clients, $devis, $constituers)
+    {   
+        $this->arrayClients = $clients;
+        $this->arrayDevis = $devis;
+        $this->arrayConstituers = $constituers;
+        $this->date = $date;
     } 
     
     public function Process() {
@@ -26,7 +26,7 @@ class SyncRequest
 
         //Save Clients & update Devis->client_id with fresh mysql id
         if(!empty($this->arrayClients)){            
-            foreach ($this->arrayClients as $cli){
+            foreach ($this->arrayClients as $key => $cli){
                 //Check if client exist (created_at != NULL)
                 if($cli['created_at'] == NULL){
                     //New resource so store that in server
@@ -39,7 +39,7 @@ class SyncRequest
                     $client->fill($cli);
                     $client->save();
                     if(!empty($this->arrayDevis)){
-                        foreach ($this->arrayDevis as $dev){
+                        foreach ($this->arrayDevis as $key => &$dev){
                             if($dev['client_id'] == $oldId){
                                 $dev['client_id'] = $client->id;
                             }                 
@@ -54,7 +54,7 @@ class SyncRequest
         }
         //Save Devis & update Constituers->devis_id with fresh mysql id
         if(!empty($this->arrayDevis)){
-            foreach ($this->arrayDevis as $dev){
+            foreach ($this->arrayDevis as $key => $dev){
                 //Check if devis exist (created_at != NULL)
                 if($dev['created_at'] == NULL){
                     //New resource so store that in server
@@ -66,8 +66,8 @@ class SyncRequest
                     $devis = new Devis();
                     $devis->fill($dev);
                     $devis->save();
-                    if(count($this->arrayConstituers) > 0 ){
-                        foreach ($this->arrayConstituers as $const){
+                    if(!empty($this->arrayConstituers)){
+                        foreach ($this->arrayConstituers as $key => &$const){
                             if($const['devis_id'] == $oldId){
                                 $dev['devis_id'] = $devis->id;
                             }
@@ -79,22 +79,25 @@ class SyncRequest
                     $devis->save();
                 }
             }
-            if(!empty($this->arrayConstituers)){
-                foreach ($this->arrayConstituers as $const){
-                    //Check if client exist (created_at != NULL)
-                    if($const['created_at'] == NULL){
-                        //New resource so store that in server
-                        $constituer = new Constituer();
-                        unset($const['created_at']);
-                        unset($const['updated_at']);
-                        unset($const['deleted_at']);
-                        $constituer->fill($const);
-                        $constituer->save();
-                    }else{
-                        $constituer = Constituer::where('id', '=', $const['id'])->first();
-                        $constituer->fill($const);
-                        $constituer->save();
-                    }
+        }
+
+        if(!empty($this->arrayConstituers)){
+            var_dump('ici 1 1 1');
+            foreach ($this->arrayConstituers as $key => $const){
+                //Check if client exist (created_at != NULL)
+                var_dump('ici 2 2 2');
+                if($const['created_at'] == NULL){
+                    //New resource so store that in server
+                    $constituer = new Constituer();
+                    unset($const['created_at']);
+                    unset($const['updated_at']);
+                    unset($const['deleted_at']);
+                    $constituer->fill($const);
+                    $constituer->save();
+                }else{
+                    $constituer = Constituer::where('id', '=', $const['id'])->first();
+                    $constituer->fill($const);
+                    $constituer->save();
                 }
             }
         }
