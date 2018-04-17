@@ -25,7 +25,7 @@ class SyncRequest
         */
 
         //Save Clients & update Devis->client_id with fresh mysql id
-        if(count($this->arrayClients) > 0 ){            
+        if(!empty($this->arrayClients)){            
             foreach ($this->arrayClients as $cli){
                 //Check if client exist (created_at != NULL)
                 if($cli['created_at'] == NULL){
@@ -38,20 +38,22 @@ class SyncRequest
                     $client = new Client();
                     $client->fill($cli);
                     $client->save();
-                    foreach ($this->arrayDevis as $dev){
-                        if($dev['client_id'] == $oldId){
-                            $dev['client_id'] = $client->id;
-                        }                 
+                    if(!empty($this->arrayDevis)){
+                        foreach ($this->arrayDevis as $dev){
+                            if($dev['client_id'] == $oldId){
+                                $dev['client_id'] = $client->id;
+                            }                 
+                        }
                     }
                 }else{
-                    $client = Client::where('id', '=', $cli['id'])->where('created_at', '=', $cli['created_at'])->first();
+                    $client = Client::where('id', '=', $cli['id'])->first();
                     $client->fill($cli);
                     $client->save();
                 }
             }
         }
         //Save Devis & update Constituers->devis_id with fresh mysql id
-        if(count($this->arrayDevis) > 0 ){
+        if(!empty($this->arrayDevis)){
             foreach ($this->arrayDevis as $dev){
                 //Check if devis exist (created_at != NULL)
                 if($dev['created_at'] == NULL){
@@ -64,18 +66,20 @@ class SyncRequest
                     $devis = new Devis();
                     $devis->fill($dev);
                     $devis->save();
-                    foreach ($this->arrayConstituers as $const){
-                        if($const['devis_id'] == $oldId){
-                            $dev['devis_id'] = $devis->id;
+                    if(count($this->arrayConstituers) > 0 ){
+                        foreach ($this->arrayConstituers as $const){
+                            if($const['devis_id'] == $oldId){
+                                $dev['devis_id'] = $devis->id;
+                            }
                         }
                     }
                 }else{
-                    $devis = Devis::where('id', '=', $dev['id'])->where('created_at', '=', $dev['created_at'])->first();
+                    $devis = Devis::where('id', '=', $dev['id'])->first();
                     $devis->fill($dev);
                     $devis->save();
                 }
             }
-            if(count($this->arrayConstituers) > 0 ){
+            if(!empty($this->arrayConstituers)){
                 foreach ($this->arrayConstituers as $const){
                     //Check if client exist (created_at != NULL)
                     if($const['created_at'] == NULL){
@@ -87,7 +91,7 @@ class SyncRequest
                         $constituer->fill($const);
                         $constituer->save();
                     }else{
-                        $constituer = Constituer::where('id', '=', $const['id'])->where('created_at', '=', $const['created_at']);
+                        $constituer = Constituer::where('id', '=', $const['id'])->first();
                         $constituer->fill($const);
                         $constituer->save();
                     }
