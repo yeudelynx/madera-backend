@@ -20,6 +20,8 @@ class GammesTableSeeder extends Seeder
 		    DB::table('gammes')->insert([
                 'lib_gamme' => 'lib gamme '.$i,
                 'remise_id' => $faker->numberBetween($min = 1, $max = 10),
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

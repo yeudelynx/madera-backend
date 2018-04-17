@@ -23,6 +23,8 @@ class DevisTableSeeder extends Seeder
                 'client_id' => $faker->numberBetween($min = 1, $max = 10),
                 'user_id' => $faker->numberBetween($min = 1, $max = 10),
                 'sol_id' => $faker->numberBetween($min = 1, $max = 10),
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

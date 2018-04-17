@@ -18,6 +18,8 @@ class UnitesTableSeeder extends Seeder
 		    DB::table('unites')->insert([
                 'symbole' => 'm',
                 'lib_unite' => 'metre',
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
     }
 }

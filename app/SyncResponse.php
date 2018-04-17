@@ -14,39 +14,28 @@ use App\Sol;
 use App\Unite;
 use App\User;
 
-class SyncRequest
+class SyncResponse
 {
-	private $categories = Categorie::All();
-	private $clients = Client::All();
-	private $constituers = Constituer::All();
-	private $couleurs = Couleur::All();
-	private $devis = Devis::All();
-	private $gammes = Gamme::All();
-	private $magasins = Magasin::All();
-	private $matieres = Matiere::All();
-	private $modules = Module::All();
-	private $remises = Remise::All();
-	private $sols = Sol::All();
-	private $unites = Unite::All();
-	private $users = User::All();
-
+	/*
+		TODO : Return only users datas
+	*/
 	public function Process(){
 		$datas = array(
-			'categories' => $this->categories->toArray(),
-			'clients' => $this->clients->toArray(),
-			'constituers' => $this->constituers->toArray(),
-			'couleurs' => $this->couleurs->toArray(),
-			'devis' => $this->devis->toArray(),
-			'gammes' => $this->gammes->toArray(),
-			'magasins' => $this->magasins->toArray(),
-			'matieres' => $this->matieres->toArray(),
-			'modules' => $this->modules->toArray(),
-			'remises' => $this->remises->toArray(),
-			'sols' => $this->sols->toArray(),
-			'unites' => $this->unites->toArray(),
-			'users' => $this->users->toArray(),
+			'date' => Now(),
+			'categories' => Categorie::all()->toArray(),
+			'clients' => Client::all()->toArray(),
+			'constituers' => Constituer::all()->toArray(),
+			'couleurs' => Couleur::all()->toArray(),
+			'devis' => Devis::all()->toArray(),
+			'gammes' => Gamme::all()->toArray(),
+			'magasins' => Magasin::all()->toArray(),
+			'matieres' => Matiere::all()->toArray(),
+			'modules' => Module::all()->toArray(),
+			'remises' => Remise::all()->toArray(),
+			'sols' => Sol::all()->toArray(),
+			'unites' => Unite::all()->toArray(),
+			'users' => User::all()->toArray(),
 		);
-
 		return json_encode($datas);
 	}
 }

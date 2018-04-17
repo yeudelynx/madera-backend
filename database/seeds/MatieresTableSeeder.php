@@ -17,15 +17,23 @@ class MatieresTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 		DB::table('matieres')->insert([
             'lib_matiere' => 'bois',
+            'created_at' => Now(),
+            'updated_at' => Now(),
 		]);
         DB::table('matieres')->insert([
             'lib_matiere' => 'alu',
+            'created_at' => Now(),
+            'updated_at' => Now(),
         ]);
         DB::table('matieres')->insert([
             'lib_matiere' => 'fer',
+            'created_at' => Now(),
+            'updated_at' => Now(),
         ]);
         DB::table('matieres')->insert([
             'lib_matiere' => 'plas-tok',
+            'created_at' => Now(),
+            'updated_at' => Now(),
         ]);
     }
 }

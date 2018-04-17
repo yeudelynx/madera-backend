@@ -72,6 +72,10 @@ Route::apiResources([
 //Trigger this route for generate a pdf with specifique id_devis
 Route::get('pdf/{id_devis}', 'PdfController@generate');
 
+//Sync route
+Route::post('sync', 'SyncController@sync');
+
+
 
 //retrive data from RealmDB to local DB
 //Route::get('/retrive', 'RealmController@retrive');

@@ -20,6 +20,8 @@ class MagasinsTableSeeder extends Seeder
 		    DB::table('magasins')->insert([
 		        'adresse' =>  $addr,
 		        'lib_magasin' => 'le magasin de ' . $addr,
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

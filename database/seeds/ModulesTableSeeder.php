@@ -25,6 +25,8 @@ class ModulesTableSeeder extends Seeder
                 'distance_sol' => $faker->numberBetween($min = 2, $max = 4),
                 'gamme_id' => $faker->numberBetween($min = 1, $max = 10),
                 'categorie_id' => $faker->numberBetween($min = 1, $max = 10),
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

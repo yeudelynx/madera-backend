@@ -1,4 +1,4 @@
-<?php
+w<?php
 
 use App\Client;
 use Illuminate\Database\Seeder;
@@ -25,6 +25,8 @@ class ClientsTableSeeder extends Seeder
                 'adresse' => $faker->address, 
                 'tel' => '0606060606',
                 'mail' => $name.'.'.$firstname.'@gmail.com',
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

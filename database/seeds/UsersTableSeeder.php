@@ -28,6 +28,8 @@ class UsersTableSeeder extends Seeder
                 'ville' => $faker->address,
                 'login' => $name.'.'.$firstname,
                 'magasin_id' => $faker->numberBetween($min = 1, $max = 10),
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

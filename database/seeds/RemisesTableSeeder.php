@@ -21,6 +21,8 @@ class RemisesTableSeeder extends Seeder
 		    DB::table('remises')->insert([
                 'valeur_remise' => $valRemise,
                 'lib_remise' => 'Remise exeptionnelle de '.$valRemise,
+                'created_at' => Now(),
+                'updated_at' => Now(),
 		    ]);
 		}
     }

@@ -25,6 +25,8 @@ class SolsTableSeeder extends Seeder
                 '"},{"x":"'.$faker->numberBetween($min = 0, $max = 10).'","y":"'.$faker->numberBetween($min = 90, $max = 100).
                 '"},{"x":"'.$faker->numberBetween($min = 90, $max = 100).'","y":"'.$faker->numberBetween($min = 90, $max = 100).
                 '"},{"x":"'.$faker->numberBetween($min = 90, $max = 100).'","y":"'.$faker->numberBetween($min = 0, $max = 10).'"}]',
+                'created_at' => Now(),
+                'updated_at' => Now(),
             ]);
             $sol = Sol::where('id', $i+1)->first();
             \Log::info($sol->list_points_sol);

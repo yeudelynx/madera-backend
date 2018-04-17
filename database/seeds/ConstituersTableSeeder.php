@@ -30,6 +30,8 @@ class ConstituersTableSeeder extends Seeder
                 'couleur_id' => $faker->numberBetween($min = 1, $max = 10),
                 'matiere_id' => $faker->numberBetween($min = 1, $max = 4),
                 'unite_id' => 1,
+                'created_at' => Now(),
+                'updated_at' => Now(),
             ]);
 		}
     }
