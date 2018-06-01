@@ -23,6 +23,7 @@ class ModulesTableSeeder extends Seeder
                 'hauteur' => $faker->numberBetween($min = 1, $max = 3),
                 'largeur' => $faker->numberBetween($min = 1, $max = 2),
                 'distance_sol' => $faker->numberBetween($min = 2, $max = 4),
+                'lib_module' => 'lib module '.$i,
                 'gamme_id' => $faker->numberBetween($min = 1, $max = 10),
                 'categorie_id' => $faker->numberBetween($min = 1, $max = 10),
                 'created_at' => Now(),
