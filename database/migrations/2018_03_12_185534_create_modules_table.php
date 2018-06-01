@@ -15,7 +15,7 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lib_gamme');
+            $table->string('lib_module');
             $table->double('prix', 10, 2);
             $table->double('longueur', 10, 3);
             $table->double('hauteur', 10, 3);
