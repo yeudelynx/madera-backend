@@ -25,7 +25,7 @@ class ClientsTableSeeder extends Seeder
                 'adresse' => $faker->address, 
                 'tel' => '0606060606',
                 'mail' => $name.'.'.$firstname.'@gmail.com',
-                'user_id' => $i,
+                'user_id' => $i+1,
                 'created_at' => Now(),
                 'updated_at' => Now(),
 		    ]);
