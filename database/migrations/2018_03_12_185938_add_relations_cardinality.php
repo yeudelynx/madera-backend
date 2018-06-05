@@ -17,6 +17,10 @@ class AddRelationsCardinality extends Migration
             $table->integer('magasin_id')->unsigned()->nullable();
             $table->foreign('magasin_id')->references('id')->on('magasins');
         });
+        Schema::table('clients', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+        });
 
         Schema::table('devis', function (Blueprint $table) {
             $table->integer('client_id')->unsigned()->nullable();
